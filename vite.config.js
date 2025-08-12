@@ -21,3 +21,4 @@ export default defineConfig({
   },
   base: isGitHubPages ? `/${repoName}/` : '/', // GitHub Pages 用子路径，Netlify 用根路径
 })
+
