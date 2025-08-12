@@ -3,7 +3,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-// Vite 配置
 export default defineConfig({
   plugins: [
     vue(),
@@ -14,6 +13,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // 部署在 Cloudflare Pages 或 Netlify 根目录
-  base: '/', 
+  base: process.env.NODE_ENV === 'production'
+    ? '/NoMash-Library/' // 把 MyWeatherApp 换成你 GitHub 仓库的名字
+    : '/'
 })
