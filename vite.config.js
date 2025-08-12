@@ -3,6 +3,12 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
+// GitHub Pages 仓库名
+const repoName = 'NoMash-Library'
+
+// 根据环境变量判断是 Netlify 还是 GitHub Pages
+const isGitHubPages = process.env.GITHUB_ACTIONS === 'true'
+
 export default defineConfig({
   plugins: [
     vue(),
@@ -13,7 +19,6 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: process.env.NODE_ENV === 'production'
-    ? '/NoMash-Library/' // 把 MyWeatherApp 换成你 GitHub 仓库的名字
-    : '/'
+  base: isGitHubPages ? `/${repoName}/` : '/', // GitHub Pages 用子路径，Netlify 用根路径
 })
+
